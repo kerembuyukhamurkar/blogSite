@@ -36,11 +36,13 @@ public class Blogrepository {
                 .update();
     }
     public void updateBlog(String title, String content,Integer id){
-        jdbcClient.sql("UPDATE blog.Blogs " +
-                        "SET title =:title, " +
-                        "content=:content," +
-                        "create_date=now()" +
-                        "where id=:id")
+        jdbcClient.sql("""
+                        UPDATE blog.Blogs
+                        SET title =:title,
+                             content=:content,
+                             create_date=now()
+                        WHERE id=:id
+                        """)
                 .param("id",id)
                 .param("content",content)
                 .param("title",title)
