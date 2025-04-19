@@ -26,4 +26,8 @@ public class BlogController {
     Blog getById(@PathVariable Integer id){
         return blogrepository.findBlogById(id);
     }
+    @PutMapping("/{id}")
+    void update(@PathVariable Integer id ,@RequestBody Blog blog){
+        blogrepository.updateBlog(blog.title(),blog.content(),id);
+    }
 }

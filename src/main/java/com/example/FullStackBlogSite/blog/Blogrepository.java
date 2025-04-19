@@ -27,13 +27,23 @@ public class Blogrepository {
     }
 
     public void createBlog(Blog blog) {
-        jdbcClient.sql("INSERT INTO blog.Blogs(title, content, create_date, creator) VALUES (?, ?, ?, ?)")
+        jdbcClient.sql("INSERT INTO blog.Blogs(title, content, create_date, creator) VALUES (?, ?,now(), ?)")
                 .params(List.of(
                         blog.title(),
                         blog.content(),
-                        blog.createDate(),
                         blog.creator()
                 ))
+                .update();
+    }
+    public void updateBlog(String title, String content,Integer id){
+        jdbcClient.sql("UPDATE blog.Blogs " +
+                        "SET title =:title, " +
+                        "content=:content," +
+                        "create_date=now()" +
+                        "where id=:id")
+                .param("id",id)
+                .param("content",content)
+                .param("title",title)
                 .update();
     }
 }
