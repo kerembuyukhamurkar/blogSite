@@ -30,4 +30,8 @@ public class BlogController {
     void update(@PathVariable Integer id ,@RequestBody Blog blog){
         blogrepository.updateBlog(blog.title(),blog.content(),id);
     }
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable Integer id){
+        blogrepository.deleteBlog(id);
+    }
 }

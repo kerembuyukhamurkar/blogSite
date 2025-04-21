@@ -48,4 +48,10 @@ public class Blogrepository {
                 .param("title",title)
                 .update();
     }
+
+    public void deleteBlog(Integer id){
+        jdbcClient.sql("DELETE FROM blog.Blogs where id=:id")
+                .param("id",id)
+                .update();
+    }
 }
