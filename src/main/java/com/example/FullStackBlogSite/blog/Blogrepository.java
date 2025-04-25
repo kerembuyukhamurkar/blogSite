@@ -14,7 +14,7 @@ public class Blogrepository {
     }
     public Blog findBlogById(Integer id){
         return  jdbcClient
-                .sql("Select * from blog.Blogs where id=:id")
+                .sql("Select * from blog.blogs where id=:id")
                 .param("id",id)
                 .query(Blog.class)
                 .single();
@@ -27,7 +27,7 @@ public class Blogrepository {
     }
 
     public void createBlog(Blog blog) {
-        jdbcClient.sql("INSERT INTO blog.Blogs(title, content, create_date, creator) VALUES (?, ?,now(), ?)")
+        jdbcClient.sql("INSERT INTO blog.blogs(title, content, create_date, creator) VALUES (?, ?,now(), ?)")
                 .params(List.of(
                         blog.title(),
                         blog.content(),
@@ -37,7 +37,7 @@ public class Blogrepository {
     }
     public void updateBlog(String title, String content,Integer id){
         jdbcClient.sql("""
-                        UPDATE blog.Blogs
+                        UPDATE blog.blogs
                         SET title =:title,
                              content=:content,
                              create_date=now()
@@ -50,7 +50,7 @@ public class Blogrepository {
     }
 
     public void deleteBlog(Integer id){
-        jdbcClient.sql("DELETE FROM blog.Blogs where id=:id")
+        jdbcClient.sql("DELETE FROM blog.blogs where id=:id")
                 .param("id",id)
                 .update();
     }
