@@ -1,14 +1,16 @@
 package com.example.FullStackBlogSite.user;
 
-import org.springframework.data.annotation.Id;
-
-
 public class User {
-    @Id
     private Long id;
     private String username;
     private String password;
     private String role;
+
+    public User(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     public String getUsername() {
         return username;
@@ -18,13 +20,6 @@ public class User {
         this.username = username;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPassword() {
         return password;
