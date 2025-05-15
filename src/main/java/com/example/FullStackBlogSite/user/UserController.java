@@ -31,7 +31,6 @@ public class UserController {
         String hashedPassword = passwordEncoder.encode(request.getPassword());
 
         try {
-            // Save to DB
             jdbcClient.sql("INSERT INTO users (username, password, enabled) VALUES (?, ?, true)")
                     .params(Arrays.asList(request.getUsername(), hashedPassword))
                     .update();
